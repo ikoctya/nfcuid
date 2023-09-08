@@ -11,6 +11,7 @@ const (
 	CharFlagSemiColon
 	CharFlagColon
 	CharFlagComma
+	CharFlagZeroes
 )
 
 type CharFlagDef struct {
@@ -27,6 +28,7 @@ var charFlagStrings = map[CharFlag]CharFlagDef{
 	CharFlagSemiColon: CharFlagDef{"semicolon", ";"},
 	CharFlagColon:     CharFlagDef{"colon", ":"},
 	CharFlagComma:     CharFlagDef{"comma", ","},
+	CharFlagZeroes:     CharFlagDef{"zeroes", "000000"},
 }
 
 func StringToCharFlag(s string) (CharFlag, bool) {

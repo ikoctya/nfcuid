@@ -7,10 +7,11 @@ import (
 
 func main() {
 	var appFlags Flags
-	var endChar, inChar string
+	var endChar, inChar, startChar string
 	var ok bool
 	//Read application flags
 	flag.StringVar(&endChar, "end-char", "none", "Character at the end of UID. Options: "+CharFlagOptions())
+	flag.StringVar(&startChar, "start-char", "none", "Character at the start of UID. Options: "+CharFlagOptions())
 	flag.StringVar(&inChar, "in-char", "none", "Сharacter between bytes of UID. Options: "+CharFlagOptions())
 	flag.BoolVar(&appFlags.CapsLock, "caps-lock", false, "UID with Caps Lock")
 	flag.BoolVar(&appFlags.Reverse, "reverse", false, "UID reverse order")
@@ -24,6 +25,11 @@ func main() {
 		errorExit(errors.New("Unknown end character flag. Run with '-h' flag to check options"))
 		return
 	}
+		appFlags.StartChar, ok = StringToCharFlag(startChar)
+    	if !ok {
+    		errorExit(errors.New("Unknown start character flag. Run with '-h' flag to check options"))
+    		return
+    	}
 	appFlags.InChar, ok = StringToCharFlag(inChar)
 	if !ok {
 		errorExit(errors.New("Unknown in character flag. Run with '-h' flag to check options"))

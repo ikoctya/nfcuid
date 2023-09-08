@@ -28,6 +28,7 @@ type Flags struct {
 	Reverse  bool
 	Decimal  bool
 	EndChar  CharFlag
+	StartChar CharFlag
 	InChar   CharFlag
 	Device   int
 }
@@ -198,6 +199,9 @@ func (s *service) formatOutput(rx []byte) string {
 
 	output = output + s.flags.EndChar.Output()
 	return output
+
+	output = s.flags.StartChar.Output() + output
+    return output
 }
 
 func waitUntilCardPresent(ctx *scard.Context, readers []string) (int, error) {
